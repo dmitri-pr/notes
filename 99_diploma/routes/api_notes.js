@@ -2,8 +2,7 @@ const express = require('express');
 const { query } = require('../db');
 const { v4: uuidv4 } = require('uuid');
 const marked = require('marked');
-const puppeteer = require('puppeteer-core');
-// const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer');
 
 const router = express.Router();
 const PAGE_SIZE = 20;
@@ -233,19 +232,9 @@ router.get('/:id/pdf', ensureAuth, async (req, res) => {
       </html>
     `;
 
-    // const browser = await puppeteer.launch({
-    //   headless: 'new',
-    //   args: ['--no-sandbox', '--disable-setuid-sandbox'] 
-    // });
     const browser = await puppeteer.launch({
-      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || '/usr/bin/chromium',
       headless: 'new',
-      args: [
-        '--no-sandbox',
-        '--disable-setuid-sandbox',
-        '--disable-dev-shm-usage',
-        '--disable-gpu'
-      ]
+      args: ['--no-sandbox', '--disable-setuid-sandbox'] 
     });
     const page = await browser.newPage();
     await page.setContent(html, { waitUntil: 'networkidle0' });

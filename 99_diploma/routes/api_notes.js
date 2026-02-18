@@ -233,7 +233,7 @@ router.get('/:id/pdf', ensureAuth, async (req, res) => {
     `;
 
     const browser = await puppeteer.launch({
-      headless: 'new',
+      headless: true,
       args: ['--no-sandbox', '--disable-setuid-sandbox'] 
     });
     const page = await browser.newPage();

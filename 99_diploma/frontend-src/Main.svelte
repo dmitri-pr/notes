@@ -21,7 +21,7 @@
 
   let fetching;
   let search = "";
-  let age = "1month";
+  let age = "1week";
   let page = 1;
   let entries = [];
 
@@ -60,7 +60,7 @@
 
   const deleteAll = async () => {
     await deleteAllArchived();
-    age = "1month";
+    age = "1week";
     fetchFromScratch();
   };
 
@@ -109,13 +109,14 @@
     <p>
       <!-- svelte-ignore a11y-no-onchange -->
       <select bind:value={age} on:change={fetchFromScratch} class="uk-select">
+        <option value="1week">за неделю</option>
         <option value="1month">за месяц</option>
         <option value="3months">за 3 месяца</option>
         <option value="alltime">за всё время</option>
         <option value="archive">архив</option>
       </select>
     </p>
-    <!-- <p class="uk-search uk-search-default uk-width-1-1">
+    <p class="uk-search uk-search-default uk-width-1-1">
       <i uk-search-icon class="uk-icon uk-search-icon fas fa-search" />
       <input
         bind:value={search}
@@ -123,7 +124,7 @@
         class="uk-search-input uk-width-1-1"
         type="search"
         placeholder="Поиск по заголовку" />
-    </p> -->
+    </p>
 
     {#each entries as entry}
       <NoteCard {entry} isActive={entry._id === activeNoteId} />

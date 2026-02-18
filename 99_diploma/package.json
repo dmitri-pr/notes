@@ -8,7 +8,8 @@
   "scripts": {
     "start": "node index.js",
     "dev": "concurrently \"rollup --config -w\" \"nodemon index.js\"",
-    "build": "rimraf public/bundle.* && rollup --config"
+    "build": "rimraf public/bundle.* && rollup --config",
+    "postinstall": "node node_modules/puppeteer/install.js"
   },
   "engines": {
     "node": "20.x"

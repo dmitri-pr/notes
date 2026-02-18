@@ -11,7 +11,7 @@
     "build": "rimraf public/bundle.* && rollup --config"
   },
   "engines": {
-    "node": ">=14"
+    "node": "20.x"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
